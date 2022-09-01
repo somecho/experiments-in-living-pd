@@ -1,4 +1,4 @@
-#N canvas 519 404 449 344 12;
+#N canvas 227 397 449 344 12;
 #X declare -lib timbreID/timbreIDLib;
 #N canvas 375 374 652 439 routing 0;
 #X msg 9 39 \; pd dsp \$1;
@@ -12,7 +12,7 @@
 1;
 #X obj 109 69 declare -lib timbreID/timbreIDLib;
 #X text 36 72 START;
-#N canvas 890 64 838 789 ws_routing 0;
+#N canvas 682 81 838 789 ws_routing 1;
 #N canvas 267 392 225 314 OnOff 0;
 #X obj 13 177 spigot;
 #X obj 26 18 r on_off;
@@ -41,9 +41,9 @@ off, f 27;
 #X connect 5 0 8 0;
 #X connect 6 0 7 0;
 #X connect 8 0 9 0;
-#X restore 359 399 pd OnOff;
-#X obj 340 495 print;
-#X obj 545 498 print;
+#X restore 407 427 pd OnOff;
+#X obj 388 523 print;
+#X obj 593 526 print;
 #X obj 121 421 websocket-server 6904;
 #N canvas 125 225 901 472 channel1 0;
 #X obj 20 37 adc~ 1;
@@ -343,8 +343,9 @@ off, f 27;
 #X restore 394 17 pd channel5;
 #X obj 94 338 pack \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10 \$11 \$12
 \$13 \$14 \$15;
-#X msg 340 471 DSP is on. Patch starting;
-#X msg 545 474 DSP off.;
+#X msg 388 499 DSP is on. Patch starting;
+#X msg 593 502 DSP off.;
+#X obj 270 377 r \$0-reset-connection;
 #X connect 0 0 10 0;
 #X connect 0 1 11 0;
 #X connect 4 0 9 0;
@@ -365,6 +366,7 @@ off, f 27;
 #X connect 9 0 3 0;
 #X connect 10 0 1 0;
 #X connect 11 0 2 0;
+#X connect 12 0 3 2;
 #X restore 109 42 pd ws_routing;
 #X obj 17 107 cnv 15 410 220 empty empty empty 20 12 0 14 -232576 -66577
 0;
@@ -402,3 +404,7 @@ off, f 27;
 0;
 #X obj 360 130 vu 15 120 adc5gain empty -1 -8 0 10 -66577 -1 1 0;
 #X text 367 282 MIX;
+#X obj 288 16 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 288 36 s \$0-reset-connection;
+#X connect 31 0 32 0;
